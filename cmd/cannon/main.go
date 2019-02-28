@@ -32,19 +32,19 @@ func main() {
 		wind: geom.NewVector(-0.01, 0, 0),
 	}
 
-	display := display.NewCanvas(900, 550)
+	canvas := display.NewCanvas(900, 550)
 	red := geom.NewColor(1, 0, 0)
 
 	for proj.pos.Y() >= 0 {
 		x := int(math.Round(proj.pos.X()))
 		y := int(math.Round(proj.pos.Y()))
 
-		if x < display.Width && y < display.Height {
-			display.Grid[x*display.Height+y] = red
+		if x < canvas.Width && y < canvas.Height {
+			canvas.Grid[x*canvas.Height+y] = red
 		}
 
 		proj.tick(env)
 	}
 
-	display.WritePpm(os.Stdout)
+	canvas.WritePpm(os.Stdout)
 }
