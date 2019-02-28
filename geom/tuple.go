@@ -109,3 +109,9 @@ func (tuple Tuple) Cross(other Tuple) Tuple {
 		tuple.X()*other.Y()-tuple.Y()*other.X(),
 	)
 }
+
+func (tuple Tuple) ApplyTransform(transform Transform) Tuple {
+	var result mat.VecDense
+	result.MulVec(transform.data, tuple.data)
+	return Tuple{&result}
+}
