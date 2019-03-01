@@ -135,6 +135,15 @@ func TestTupleDot(t *testing.T) {
 	a := NewVector(1, 2, 3)
 	b := NewVector(2, 3, 4)
 
+	got := a.Dot(b)
+	exp := 20.0
+	testFloatEqual(t, got, exp)
+}
+
+func TestTupleCross(t *testing.T) {
+	a := NewVector(1, 2, 3)
+	b := NewVector(2, 3, 4)
+
 	got := a.Cross(b)
 	exp := NewVector(-1, 2, -1)
 	testTupleEqual(t, got, exp)
