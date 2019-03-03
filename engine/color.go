@@ -1,6 +1,7 @@
-package geom
+package engine
 
 import (
+	"github.com/ajeetdsouza/tracy/config"
 	"gonum.org/v1/gonum/mat"
 )
 
@@ -22,6 +23,10 @@ func (color Color) G() float64 {
 
 func (color Color) B() float64 {
 	return color.data.AtVec(2)
+}
+
+func (color Color) Equal(other Color) bool {
+	return mat.EqualApprox(color.data, other.data, config.EPSILON)
 }
 
 func (color Color) Add(other Color) Color {

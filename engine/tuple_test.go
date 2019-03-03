@@ -1,24 +1,9 @@
-package geom
+package engine
 
 import (
 	"math"
 	"testing"
-
-	"github.com/ajeetdsouza/tracy/config"
-	"gonum.org/v1/gonum/floats"
 )
-
-func testTupleEqual(t *testing.T, got, exp Tuple) {
-	if !got.IsEqual(exp) {
-		t.Errorf("got %v, expected: %v", got, exp)
-	}
-}
-
-func testFloatEqual(t *testing.T, got, exp float64) {
-	if !floats.EqualWithinAbsOrRel(got, exp, config.EPSILON, config.EPSILON) {
-		t.Errorf("got %v, expected: %v", got, exp)
-	}
-}
 
 func TestPoint(t *testing.T) {
 	tuple := NewTuple(4.3, -4.2, 3.1, 1.0)
@@ -138,6 +123,20 @@ func TestTupleDot(t *testing.T) {
 	got := a.Dot(b)
 	exp := 20.0
 	testFloatEqual(t, got, exp)
+}
+
+func TestTupleReflect(t *testing.T) {
+	tests := []struct {
+		tuple, normal, reflected Tuple
+	}{
+		{NewVector(1, -1, 0), NewVector(0, 1, 0), NewVector(1, 1, 0)},
+		{NewVector(0, -1, 0), NewVector(1/math.Sqrt2, 1/math.Sqrt2, 0), NewVector(1, 0, 0)},
+	}
+
+	for _, test := range tests {
+		got := test.tuple.Reflect(test.normal)
+		testTupleEqual(t, got, test.reflected)
+	}
 }
 
 func TestTupleCross(t *testing.T) {

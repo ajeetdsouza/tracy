@@ -1,4 +1,4 @@
-package geom
+package engine
 
 import (
 	"fmt"
@@ -57,7 +57,7 @@ func (tuple Tuple) IsVector() bool {
 	return floats.EqualWithinAbsOrRel(tuple.W(), wVector, config.EPSILON, config.EPSILON)
 }
 
-func (tuple Tuple) IsEqual(other Tuple) bool {
+func (tuple Tuple) Equal(other Tuple) bool {
 	return mat.EqualApprox(tuple.data, other.data, config.EPSILON)
 }
 
@@ -108,6 +108,10 @@ func (tuple Tuple) Cross(other Tuple) Tuple {
 		tuple.Z()*other.X()-tuple.X()*other.Z(),
 		tuple.X()*other.Y()-tuple.Y()*other.X(),
 	)
+}
+
+func (tuple Tuple) Reflect(normal Tuple) Tuple {
+	return tuple.Sub(normal.Mul(2 * tuple.Dot(normal)))
 }
 
 func (tuple Tuple) ApplyTransform(transform Transform) Tuple {

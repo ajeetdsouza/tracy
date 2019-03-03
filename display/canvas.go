@@ -5,26 +5,26 @@ import (
 	"io"
 	"math"
 
-	"github.com/ajeetdsouza/tracy/geom"
+	"github.com/ajeetdsouza/tracy/engine"
 )
 
 type Canvas struct {
 	Width, Height int
-	Grid          []geom.Color
+	Grid          []engine.Color
 }
 
 func NewCanvas(width, height int) Canvas {
 	pixels := width * height
-	canvas := Canvas{width, height, make([]geom.Color, pixels)}
+	canvas := Canvas{width, height, make([]engine.Color, pixels)}
 	for i := 0; i < pixels; i++ {
-		canvas.Grid[i] = geom.NewColor(0, 0, 0)
+		canvas.Grid[i] = engine.NewColor(0, 0, 0)
 	}
 	return canvas
 }
 
 func (canvas Canvas) WritePpm(writer io.Writer) {
 	fmt.Fprintf(writer, "P3\n%d %d\n255\n", canvas.Width, canvas.Height)
-	for row := canvas.Height - 1; row >= 0; row-- {
+	for row := 0; row < canvas.Height; row++ {
 		for col := 0; col < canvas.Width; col++ {
 			color := canvas.Grid[col*canvas.Height+row]
 			ir := scaleTo255(color.R())
