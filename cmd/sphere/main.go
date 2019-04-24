@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/ajeetdsouza/tracy/display"
-	"github.com/ajeetdsouza/tracy/engine"
+	"github.com/ajeetdsouza/tracy/pkg/display"
+	"github.com/ajeetdsouza/tracy/pkg/engine"
 )
 
 func main() {

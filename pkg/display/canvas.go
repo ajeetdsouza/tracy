@@ -5,7 +5,7 @@ import (
 	"io"
 	"math"
 
-	"github.com/ajeetdsouza/tracy/engine"
+	"github.com/ajeetdsouza/tracy/pkg/engine"
 )
 
 type Canvas struct {

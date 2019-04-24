@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/ajeetdsouza/tracy/config"
+	"github.com/ajeetdsouza/tracy/pkg/config"
 	"gonum.org/v1/gonum/mat"
 )
 
