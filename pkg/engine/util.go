@@ -19,7 +19,13 @@ func testColorEqual(t *testing.T, got, exp Color) {
 	}
 }
 
-func testFloatEqual(t *testing.T, got, exp float64) {
+func testInt64Equal(t *testing.T, got, exp int64) {
+	if got != exp {
+		t.Errorf("got %d, expected: %d", got, exp)
+	}
+}
+
+func testFloat64Equal(t *testing.T, got, exp float64) {
 	if !floats.EqualWithinAbsOrRel(got, exp, config.EPSILON, config.EPSILON) {
 		t.Errorf("got %v, expected: %v", got, exp)
 	}

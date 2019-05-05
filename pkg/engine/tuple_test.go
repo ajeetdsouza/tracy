@@ -91,7 +91,7 @@ func TestTupleMagnitude(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		testFloatEqual(t, test.tuple.Magnitude(), test.magnitude)
+		testFloat64Equal(t, test.tuple.Magnitude(), test.magnitude)
 	}
 }
 
@@ -113,7 +113,7 @@ func TestTupleNormalizedMagnitude(t *testing.T) {
 	tuple := NewVector(1, 2, 3)
 	got := tuple.Normalize().Magnitude()
 	exp := 1.0
-	testFloatEqual(t, got, exp)
+	testFloat64Equal(t, got, exp)
 }
 
 func TestTupleDot(t *testing.T) {
@@ -122,7 +122,7 @@ func TestTupleDot(t *testing.T) {
 
 	got := a.Dot(b)
 	exp := 20.0
-	testFloatEqual(t, got, exp)
+	testFloat64Equal(t, got, exp)
 }
 
 func TestTupleReflect(t *testing.T) {

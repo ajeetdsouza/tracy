@@ -11,6 +11,7 @@ type IntersectionList struct {
 	data []Intersection
 }
 
+// NewIntersectionList creates a sorted list of intersections
 func NewIntersectionList(intersections ...Intersection) IntersectionList {
 	sort.Slice(intersections, func(i, j int) bool {
 		return intersections[i].T < intersections[j].T
@@ -18,10 +19,10 @@ func NewIntersectionList(intersections ...Intersection) IntersectionList {
 	return IntersectionList{intersections}
 }
 
+// Hit returns the nearest intersection (or nil, in case there is no intersection)
 func (intersections IntersectionList) Hit() *Intersection {
 	if len(intersections.data) > 0 {
 		return &intersections.data[0]
-	} else {
-		return nil
 	}
+	return nil
 }
